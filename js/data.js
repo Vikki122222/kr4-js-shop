@@ -1,56 +1,69 @@
+// Практика №17: данные каталога AEGIS COSPLAY из КР №3.
 const products = [
     {
-        id: 1,
-        title: 'Кофемашина Barista Home',
-        category: 'kitchen',
-        price: 19990,
-        discountPercent: 10,
-        rating: 4.7,
-        isAvailable: true
+        "id": 1,
+        "title": "Костюм Афины",
+        "category": "mythology",
+        "price": 12900,
+        "discountPercent": 0,
+        "rating": null,
+        "isAvailable": true,
+        "image": "images/athena-640.jpg",
+        "description": "Образ богини мудрости в античном стиле с декоративной бронёй и золотыми элементами."
     },
     {
-        id: 2,
-        title: 'Электрический чайник SmartHeat',
-        category: 'kitchen',
-        price: 4990,
-        discountPercent: 0,
-        rating: 4.5,
-        isAvailable: true
+        "id": 2,
+        "title": "Лунная волшебница",
+        "category": "magic",
+        "price": 9500,
+        "discountPercent": 0,
+        "rating": null,
+        "isAvailable": false,
+        "image": "images/moon-sorceress.jpg",
+        "description": "Фэнтезийный костюм в светлых оттенках с декоративными элементами и аксессуарами."
     },
     {
-        id: 3,
-        title: 'Робот-пылесос CleanBot',
-        category: 'home',
-        price: 24990,
-        discountPercent: 15,
-        rating: 4.8,
-        isAvailable: false
+        "id": 3,
+        "title": "Тёмная охотница",
+        "category": "fantasy",
+        "price": 11400,
+        "discountPercent": 0,
+        "rating": null,
+        "isAvailable": false,
+        "image": "images/dark-huntress.jpg",
+        "description": "Детализированный образ в тёмном фэнтезийном стиле для фестивалей и тематических фотосессий."
     },
     {
-        id: 4,
-        title: 'Умная лампа LightSpace',
-        category: 'home',
-        price: 2990,
-        discountPercent: 5,
-        rating: 4.4,
-        isAvailable: true
+        "id": 4,
+        "title": "Лесная эльфийка",
+        "category": "fantasy",
+        "price": 10900,
+        "discountPercent": 0,
+        "rating": null,
+        "isAvailable": false,
+        "image": "",
+        "description": "Лёгкий фэнтезийный образ в природных оттенках с декоративными элементами."
     },
     {
-        id: 5,
-        title: 'Наушники SoundPro',
-        category: 'electronics',
-        price: 7990,
-        discountPercent: 10,
-        rating: 4.6,
-        isAvailable: true
+        "id": 5,
+        "title": "Воительница Севера",
+        "category": "fantasy",
+        "price": 13500,
+        "discountPercent": 0,
+        "rating": null,
+        "isAvailable": false,
+        "image": "",
+        "description": "Образ северной воительницы с декоративной бронёй и элементами фэнтези."
     },
     {
-        id: 6,
-        title: 'Портативная колонка BassBox',
-        category: 'electronics',
-        price: 5990,
-        discountPercent: 0,
-        rating: 4.3,
-        isAvailable: false
+        "id": 6,
+        "title": "Академия магии",
+        "category": "magic",
+        "price": 8900,
+        "discountPercent": 0,
+        "rating": null,
+        "isAvailable": false,
+        "image": "",
+        "description": "Костюм ученицы магической академии для фестивалей, фотосессий и тематических мероприятий."
     }
 ];

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -22,9 +21,9 @@
          после основного файла style.css. -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
-
+    <link rel="stylesheet" href="css/pr17.css">
     <script src="js/data.js" defer></script>
-    <script src="js/main.js" defer></script>
+    <script src="js/catalog.js" defer></script>
 
     <!-- Метаданные для предпросмотра ссылки на сайт. -->
     <meta property="og:type" content="website">
@@ -175,398 +174,42 @@
          На широких экранах появляется боковая панель.
          Перестроение выполняется в responsive.css. -->
     <section class="catalog-layout">
-
-        <!-- Панель фильтров вынесена в aside,
-             поскольку дополняет основной список товаров. -->
         <aside class="catalog-filters">
-
-            <h2>
-                Фильтры
-            </h2>
-
-            <!-- Фильтры являются статическими.
-                 Форма демонстрирует элементы интерфейса.
-                 JavaScript-фильтрация здесь не реализована. -->
-            <form
-                    class="catalog-filters__form"
-                    action="#"
-                    method="get"
-            >
-
-                <!-- Первая группа: категория товара.
-                     fieldset объединяет связанные поля,
-                     legend задаёт название группы. -->
-                <fieldset class="catalog-filters__group">
-
-                    <legend class="catalog-filters__legend">
-                        Категория
-                    </legend>
-
-                    <!-- Практика №13: input находится внутри label,
-                         поэтому у переключателя есть подпись. -->
-                    <label class="catalog-filters__label">
-
-                        <input
-                                type="checkbox"
-                                name="category"
-                                value="all"
-                        >
-
-                        Все костюмы
-
-                    </label>
-
-                    <label class="catalog-filters__label">
-
-                        <input
-                                type="checkbox"
-                                name="category"
-                                value="popular"
-                        >
-
-                        Популярные
-
-                    </label>
-
-                    <label class="catalog-filters__label">
-
-                        <input
-                                type="checkbox"
-                                name="category"
-                                value="new"
-                        >
-
-                        Новинки
-
-                    </label>
-
-                </fieldset>
-
-                <!-- Вторая группа: тематика костюма. -->
-                <fieldset class="catalog-filters__group">
-
-                    <legend class="catalog-filters__legend">
-                        Тематика
-                    </legend>
-
-                    <label class="catalog-filters__label">
-
-                        <input
-                                type="checkbox"
-                                name="style"
-                                value="fantasy"
-                        >
-
-                        Фэнтези
-
-                    </label>
-
-                    <label class="catalog-filters__label">
-
-                        <input
-                                type="checkbox"
-                                name="style"
-                                value="mythology"
-                        >
-
-                        Мифология
-
-                    </label>
-
-                    <label class="catalog-filters__label">
-
-                        <input
-                                type="checkbox"
-                                name="style"
-                                value="magic"
-                        >
-
-                        Магические образы
-
-                    </label>
-
-                </fieldset>
-
-                <!-- Кнопка отправляет выбранные параметры формы.
-                     В рамках КР №3 фильтрация остаётся статической. -->
-                <button
-                        class="button button--primary"
-                        type="submit"
-                >
-                    Применить
-                </button>
-
-            </form>
-
+            <h2>Фильтры</h2>
+            <section class="catalog-controls" aria-label="Управление каталогом">
+                <div class="catalog-controls__group">
+                    <label for="catalog-search">Поиск товара</label>
+                    <input id="catalog-search" class="catalog-controls__input" type="search"
+                           placeholder="Введите название товара" autocomplete="off">
+                </div>
+                <div class="catalog-controls__group">
+                    <label for="category-filter">Категория</label>
+                    <select id="category-filter" class="catalog-controls__select">
+                        <option value="all">Все категории</option>
+                        <option value="mythology">Мифология</option>
+                        <option value="fantasy">Фэнтези</option>
+                        <option value="magic">Магические образы</option>
+                    </select>
+                </div>
+                <div class="catalog-controls__group">
+                    <label for="sort-select">Сортировка</label>
+                    <select id="sort-select" class="catalog-controls__select">
+                        <option value="default">По умолчанию</option>
+                        <option value="price-asc">Сначала дешевле</option>
+                        <option value="price-desc">Сначала дороже</option>
+                        <option value="title-asc">По названию А-Я</option>
+                    </select>
+                </div>
+            </section>
         </aside>
-
-        <!-- =========================================
-             СПИСОК КОСТЮМОВ
-             Практика №12: адаптивные карточки
-             ========================================= -->
-
         <section class="catalog-layout__products">
-
-            <h2 class="section__title">
-                Все костюмы
-            </h2>
-
-            <!-- CSS Grid меняет количество колонок
-                 через медиазапросы в responsive.css. -->
-            <div class="products-grid">
-
-                <!-- =================================
-                     КАРТОЧКА 1 — КОСТЮМ АФИНЫ
-                     ================================= -->
-
-                <article class="product-card product-card--featured">
-
-                    <!-- Ссылка открывает подробную страницу товара. -->
-                    <a
-                            class="product-card__image-link"
-                            href="product.html"
-                    >
-
-                        <!-- Практика №12:
-                             srcset содержит варианты разрешения.
-                             sizes указывает ожидаемую ширину картинки.
-                             loading="lazy" откладывает её загрузку.
-
-                             Практика №13:
-                             alt описывает содержимое фотографии. -->
-                        <img
-                                class="product-card__image"
-                                src="images/athena-640.jpg"
-                                srcset="images/athena-480.jpg 480w,
-                                    images/athena-640.jpg 640w,
-                                    images/athena-960.jpg 960w"
-                                sizes="(max-width: 639px) calc(100vw - 48px),
-                                   (max-width: 1023px) 50vw,
-                                   33vw"
-                                width="640"
-                                height="853"
-                                loading="lazy"
-                                alt="Косплей-костюм Афины"
-                        >
-
-                    </a>
-
-                    <!-- h3 — заголовок карточки внутри раздела. -->
-                    <h3 class="product-card__title">
-                        Костюм Афины
-                    </h3>
-
-                    <p class="product-card__description">
-                        Образ богини мудрости в античном стиле
-                        с декоративной бронёй и золотыми элементами.
-                    </p>
-
-                    <p class="product-card__price">
-                        Цена: 12 900 руб.
-                    </p>
-
-                    <!-- Используется ссылка, поскольку
-                         происходит переход на другую страницу. -->
-                    <a
-                            class="button button--primary product-card__button"
-                            href="product.html"
-                    >
-                        Подробнее
-                    </a>
-
-                </article>
-
-                <!-- =================================
-                     КАРТОЧКА 2 — ЛУННАЯ ВОЛШЕБНИЦА
-                     ================================= -->
-
-                <article class="product-card">
-
-                    <!-- У этого товара пока нет отдельной страницы.
-                         Поэтому изображение не является ссылкой. -->
-                    <div class="product-card__image-link">
-
-                        <img
-                                class="product-card__image product-card__image--moon"
-                                src="images/moon-sorceress.jpg"
-                                loading="lazy"
-                                alt="Косплей-костюм Лунной волшебницы"
-                        >
-
-                    </div>
-
-                    <h3 class="product-card__title">
-                        Лунная волшебница
-                    </h3>
-
-                    <p class="product-card__description">
-                        Фэнтезийный костюм в светлых оттенках
-                        с декоративными элементами и аксессуарами.
-                    </p>
-
-                    <p class="product-card__price">
-                        Цена: 9 500 руб.
-                    </p>
-
-                    <!-- Практика №13: disabled не допускает
-                         взаимодействия с недоступной кнопкой. -->
-                    <button
-                            class="button button--primary product-card__button product-card__button--unavailable"
-                            type="button"
-                            disabled
-                    >
-                        Подробнее
-                    </button>
-
-                </article>
-
-                <!-- =================================
-                     КАРТОЧКА 3 — ТЁМНАЯ ОХОТНИЦА
-                     ================================= -->
-
-                <article class="product-card">
-
-                    <!-- Изображение без ссылки, поскольку
-                         подробная страница не предусмотрена. -->
-                    <div class="product-card__image-link">
-
-                        <img
-                                class="product-card__image"
-                                src="images/dark-huntress.jpg"
-                                loading="lazy"
-                                alt="Косплей-костюм Тёмной охотницы"
-                        >
-
-                    </div>
-
-                    <h3 class="product-card__title">
-                        Тёмная охотница
-                    </h3>
-
-                    <p class="product-card__description">
-                        Детализированный образ в тёмном фэнтезийном стиле
-                        для фестивалей и тематических фотосессий.
-                    </p>
-
-                    <p class="product-card__price">
-                        Цена: 11 400 руб.
-                    </p>
-
-                    <button
-                            class="button button--primary product-card__button product-card__button--unavailable"
-                            type="button"
-                            disabled
-                    >
-                        Подробнее
-                    </button>
-
-                </article>
-
-                <!-- =================================
-                     КАРТОЧКА 4 — ЛЕСНАЯ ЭЛЬФИЙКА
-                     ================================= -->
-
-                <article class="product-card">
-
-                    <!-- Текстовая заглушка используется
-                         вместо отсутствующей фотографии. -->
-                    <div class="product-card__image-placeholder">
-                        Фото костюма
-                    </div>
-
-                    <h3 class="product-card__title">
-                        Лесная эльфийка
-                    </h3>
-
-                    <p class="product-card__description">
-                        Лёгкий фэнтезийный образ в природных оттенках
-                        с декоративными элементами.
-                    </p>
-
-                    <p class="product-card__price">
-                        Цена: 10 900 руб.
-                    </p>
-
-                    <button
-                            class="button button--primary product-card__button product-card__button--unavailable"
-                            type="button"
-                            disabled
-                    >
-                        Подробнее
-                    </button>
-
-                </article>
-
-                <!-- =================================
-                     КАРТОЧКА 5 — ВОИТЕЛЬНИЦА СЕВЕРА
-                     ================================= -->
-
-                <article class="product-card">
-
-                    <div class="product-card__image-placeholder">
-                        Фото костюма
-                    </div>
-
-                    <h3 class="product-card__title">
-                        Воительница Севера
-                    </h3>
-
-                    <p class="product-card__description">
-                        Образ северной воительницы с декоративной бронёй
-                        и элементами фэнтези.
-                    </p>
-
-                    <p class="product-card__price">
-                        Цена: 13 500 руб.
-                    </p>
-
-                    <button
-                            class="button button--primary product-card__button product-card__button--unavailable"
-                            type="button"
-                            disabled
-                    >
-                        Подробнее
-                    </button>
-
-                </article>
-
-                <!-- =================================
-                     КАРТОЧКА 6 — АКАДЕМИЯ МАГИИ
-                     ================================= -->
-
-                <article class="product-card">
-
-                    <div class="product-card__image-placeholder">
-                        Фото костюма
-                    </div>
-
-                    <h3 class="product-card__title">
-                        Академия магии
-                    </h3>
-
-                    <p class="product-card__description">
-                        Костюм ученицы магической академии
-                        для фестивалей, фотосессий и тематических мероприятий.
-                    </p>
-
-                    <p class="product-card__price">
-                        Цена: 8 900 руб.
-                    </p>
-
-                    <button
-                            class="button button--primary product-card__button product-card__button--unavailable"
-                            type="button"
-                            disabled
-                    >
-                        Подробнее
-                    </button>
-
-                </article>
-
-            </div>
-
+            <h2 class="section__title">Все костюмы</h2>
+            <p class="catalog-count" aria-live="polite"></p>
+            <p class="catalog-empty" hidden>По выбранным условиям товары не найдены.</p>
+            <!-- Карточки из КР №3 теперь создаёт js/catalog.js через createElement().
+                 Ссылка «Подробнее» и адаптивное изображение Афины сохранены в JS. -->
+            <div class="products-grid" data-products-container></div>
         </section>
-
     </section>
 
 </main>
