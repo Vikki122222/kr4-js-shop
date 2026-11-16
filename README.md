@@ -9,6 +9,8 @@
 **ФИО:** Сутормина Виктория  
 **Группа:** ЭФБО-06-25
 
+**Ссылка на сайт** https://vikki122222.github.io/kr4-js-shop/
+
 **Репозиторий КР №4:** https://github.com/Vikki122222/kr4-js-shop  
 **Опубликованная версия предыдущей КР №3:** https://vikki122222.github.io/kr3-responsive-shop/
 
