@@ -247,3 +247,77 @@ if (orderPageForm && orderSuccessMessage) {
         });
     });
 }
+
+
+/* =========================================
+   Практическая №15. Основы JavaScript
+   ========================================= */
+
+console.log('Файл main.js подключён');
+console.log(product);
+console.table(product);
+
+// Форматирование цены
+function formatPrice(price) {
+    return `${price} руб.`;
+}
+
+// Расчёт скидки
+function calculateDiscount(price, discountPercent) {
+    return price * discountPercent / 100;
+}
+
+// Итоговая цена
+function calculateFinalPrice(price, discountPercent) {
+    const discountValue = calculateDiscount(price, discountPercent);
+    return price - discountValue;
+}
+
+// Проверка наличия товара
+function getProductStatus(product) {
+    if (product.isAvailable) {
+        return 'В наличии';
+    }
+
+    return 'Нет в наличии';
+}
+
+// Краткое описание товара
+function createProductSummary(product) {
+    const finalPrice = calculateFinalPrice(product.price, product.discountPercent);
+    const status = getProductStatus(product);
+
+    return `${product.title}: ${formatPrice(finalPrice)}. Статус: ${status}.`;
+}
+
+// Проверка функций в консоли
+console.log(formatPrice(product.price));
+
+const discountValue = calculateDiscount(
+    product.price,
+    product.discountPercent
+);
+console.log(discountValue);
+
+const finalPrice = calculateFinalPrice(
+    product.price,
+    product.discountPercent
+);
+console.log(finalPrice);
+
+console.log(getProductStatus(product));
+
+const productSummary = createProductSummary(product);
+console.log(productSummary);
+
+// Безопасный вывод на страницу
+const messageElement = document.querySelector('.js-message');
+const productOutputElement = document.querySelector('.product-output');
+
+if (messageElement) {
+    messageElement.textContent = 'JavaScript подключён корректно.';
+}
+
+if (productOutputElement) {
+    productOutputElement.textContent = productSummary;
+}
