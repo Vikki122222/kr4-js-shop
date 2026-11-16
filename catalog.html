@@ -1,0 +1,593 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <!-- Практика №12: основные настройки страницы.
+         viewport нужен для корректной адаптации на телефонах. -->
+    <meta charset="UTF-8">
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+            name="description"
+            content="Каталог косплей-костюмов и аксессуаров AEGIS COSPLAY."
+    >
+
+    <title>Каталог костюмов — AEGIS COSPLAY</title>
+
+    <!-- Практика №12: адаптивные стили подключены
+         после основного файла style.css. -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Метаданные для предпросмотра ссылки на сайт. -->
+    <meta property="og:type" content="website">
+
+    <meta
+            property="og:title"
+            content="Каталог — AEGIS COSPLAY"
+    >
+
+    <meta
+            property="og:description"
+            content="Косплей-костюмы для фестивалей, фотосессий и ярких перевоплощений."
+    >
+
+    <meta
+            property="og:image"
+            content="images/athena.jpg"
+    >
+</head>
+
+<body>
+
+<!-- Практика №13: ссылка для перехода сразу к основному
+     содержимому при навигации с клавиатуры. -->
+<a class="skip-link" href="#main">
+    Перейти к основному содержимому
+</a>
+
+<!-- =========================================
+     ШАПКА САЙТА
+     Практика №12: адаптивная навигация
+     Практика №13: семантика и ARIA
+     ========================================= -->
+
+<header class="site-header">
+
+    <div class="site-header__inner">
+
+        <!-- Логотип возвращает на главную страницу. -->
+        <a
+                class="site-header__logo"
+                href="index.html"
+        >
+            AEGIS COSPLAY
+        </a>
+
+        <!-- Семантический nav обозначает основное меню.
+             aria-label поясняет назначение навигации. -->
+        <nav
+                class="site-nav"
+                aria-label="Основная навигация"
+        >
+
+            <ul class="site-nav__list">
+
+                <li class="site-nav__item">
+                    <a
+                            class="site-nav__link"
+                            href="index.html"
+                    >
+                        Главная
+                    </a>
+                </li>
+
+                <li class="site-nav__item">
+
+                    <!-- Практика №13: aria-current="page"
+                         обозначает текущую страницу. -->
+                    <a
+                            class="site-nav__link site-nav__link--active"
+                            href="catalog.html"
+                            aria-current="page"
+                    >
+                        Каталог
+                    </a>
+                </li>
+
+                <li class="site-nav__item">
+                    <a
+                            class="site-nav__link"
+                            href="contacts.html"
+                    >
+                        Контакты
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </div>
+
+</header>
+
+<!-- =========================================
+     ОСНОВНОЕ СОДЕРЖИМОЕ
+     ========================================= -->
+
+<!-- Практика №13: id="main" используется
+     ссылкой пропуска из начала страницы. -->
+<main id="main" tabindex="-1">
+
+    <!-- Хлебные крошки показывают путь к каталогу.
+         Отдельный aria-label отличает эту навигацию
+         от основного меню сайта. -->
+    <nav
+            class="breadcrumbs"
+            aria-label="Хлебные крошки"
+    >
+
+        <a
+                class="breadcrumbs__link"
+                href="index.html"
+        >
+            Главная
+        </a>
+
+        <!-- Текущая страница представлена обычным текстом. -->
+        <span class="breadcrumbs__current">
+            Каталог
+        </span>
+
+    </nav>
+
+    <!-- Заголовок страницы.
+         Практика №13: один основной заголовок h1. -->
+    <section class="section">
+
+        <h1 class="section__title">
+            Каталог косплей-костюмов
+        </h1>
+
+        <p>
+            Выберите образ для фестиваля, фотосессии
+            или тематического мероприятия. В каталоге
+            представлены костюмы в стиле фэнтези,
+            мифологии и оригинальные авторские образы.
+        </p>
+
+    </section>
+
+    <!-- =========================================
+         КАТАЛОГ И БОКОВЫЕ ФИЛЬТРЫ
+         Практика №12: CSS Grid и Mobile First
+         ========================================= -->
+
+    <!-- На телефонах фильтры располагаются над товарами.
+         На широких экранах появляется боковая панель.
+         Перестроение выполняется в responsive.css. -->
+    <section class="catalog-layout">
+
+        <!-- Панель фильтров вынесена в aside,
+             поскольку дополняет основной список товаров. -->
+        <aside class="catalog-filters">
+
+            <h2>
+                Фильтры
+            </h2>
+
+            <!-- Фильтры являются статическими.
+                 Форма демонстрирует элементы интерфейса.
+                 JavaScript-фильтрация здесь не реализована. -->
+            <form
+                    class="catalog-filters__form"
+                    action="#"
+                    method="get"
+            >
+
+                <!-- Первая группа: категория товара.
+                     fieldset объединяет связанные поля,
+                     legend задаёт название группы. -->
+                <fieldset class="catalog-filters__group">
+
+                    <legend class="catalog-filters__legend">
+                        Категория
+                    </legend>
+
+                    <!-- Практика №13: input находится внутри label,
+                         поэтому у переключателя есть подпись. -->
+                    <label class="catalog-filters__label">
+
+                        <input
+                                type="checkbox"
+                                name="category"
+                                value="all"
+                        >
+
+                        Все костюмы
+
+                    </label>
+
+                    <label class="catalog-filters__label">
+
+                        <input
+                                type="checkbox"
+                                name="category"
+                                value="popular"
+                        >
+
+                        Популярные
+
+                    </label>
+
+                    <label class="catalog-filters__label">
+
+                        <input
+                                type="checkbox"
+                                name="category"
+                                value="new"
+                        >
+
+                        Новинки
+
+                    </label>
+
+                </fieldset>
+
+                <!-- Вторая группа: тематика костюма. -->
+                <fieldset class="catalog-filters__group">
+
+                    <legend class="catalog-filters__legend">
+                        Тематика
+                    </legend>
+
+                    <label class="catalog-filters__label">
+
+                        <input
+                                type="checkbox"
+                                name="style"
+                                value="fantasy"
+                        >
+
+                        Фэнтези
+
+                    </label>
+
+                    <label class="catalog-filters__label">
+
+                        <input
+                                type="checkbox"
+                                name="style"
+                                value="mythology"
+                        >
+
+                        Мифология
+
+                    </label>
+
+                    <label class="catalog-filters__label">
+
+                        <input
+                                type="checkbox"
+                                name="style"
+                                value="magic"
+                        >
+
+                        Магические образы
+
+                    </label>
+
+                </fieldset>
+
+                <!-- Кнопка отправляет выбранные параметры формы.
+                     В рамках КР №3 фильтрация остаётся статической. -->
+                <button
+                        class="button button--primary"
+                        type="submit"
+                >
+                    Применить
+                </button>
+
+            </form>
+
+        </aside>
+
+        <!-- =========================================
+             СПИСОК КОСТЮМОВ
+             Практика №12: адаптивные карточки
+             ========================================= -->
+
+        <section class="catalog-layout__products">
+
+            <h2 class="section__title">
+                Все костюмы
+            </h2>
+
+            <!-- CSS Grid меняет количество колонок
+                 через медиазапросы в responsive.css. -->
+            <div class="products-grid">
+
+                <!-- =================================
+                     КАРТОЧКА 1 — КОСТЮМ АФИНЫ
+                     ================================= -->
+
+                <article class="product-card product-card--featured">
+
+                    <!-- Ссылка открывает подробную страницу товара. -->
+                    <a
+                            class="product-card__image-link"
+                            href="product.html"
+                    >
+
+                        <!-- Практика №12:
+                             srcset содержит варианты разрешения.
+                             sizes указывает ожидаемую ширину картинки.
+                             loading="lazy" откладывает её загрузку.
+
+                             Практика №13:
+                             alt описывает содержимое фотографии. -->
+                        <img
+                                class="product-card__image"
+                                src="images/athena-640.jpg"
+                                srcset="images/athena-480.jpg 480w,
+                                    images/athena-640.jpg 640w,
+                                    images/athena-960.jpg 960w"
+                                sizes="(max-width: 639px) calc(100vw - 48px),
+                                   (max-width: 1023px) 50vw,
+                                   33vw"
+                                width="640"
+                                height="853"
+                                loading="lazy"
+                                alt="Косплей-костюм Афины"
+                        >
+
+                    </a>
+
+                    <!-- h3 — заголовок карточки внутри раздела. -->
+                    <h3 class="product-card__title">
+                        Костюм Афины
+                    </h3>
+
+                    <p class="product-card__description">
+                        Образ богини мудрости в античном стиле
+                        с декоративной бронёй и золотыми элементами.
+                    </p>
+
+                    <p class="product-card__price">
+                        Цена: 12 900 руб.
+                    </p>
+
+                    <!-- Используется ссылка, поскольку
+                         происходит переход на другую страницу. -->
+                    <a
+                            class="button button--primary product-card__button"
+                            href="product.html"
+                    >
+                        Подробнее
+                    </a>
+
+                </article>
+
+                <!-- =================================
+                     КАРТОЧКА 2 — ЛУННАЯ ВОЛШЕБНИЦА
+                     ================================= -->
+
+                <article class="product-card">
+
+                    <!-- У этого товара пока нет отдельной страницы.
+                         Поэтому изображение не является ссылкой. -->
+                    <div class="product-card__image-link">
+
+                        <img
+                                class="product-card__image product-card__image--moon"
+                                src="images/moon-sorceress.jpg"
+                                loading="lazy"
+                                alt="Косплей-костюм Лунной волшебницы"
+                        >
+
+                    </div>
+
+                    <h3 class="product-card__title">
+                        Лунная волшебница
+                    </h3>
+
+                    <p class="product-card__description">
+                        Фэнтезийный костюм в светлых оттенках
+                        с декоративными элементами и аксессуарами.
+                    </p>
+
+                    <p class="product-card__price">
+                        Цена: 9 500 руб.
+                    </p>
+
+                    <!-- Практика №13: disabled не допускает
+                         взаимодействия с недоступной кнопкой. -->
+                    <button
+                            class="button button--primary product-card__button product-card__button--unavailable"
+                            type="button"
+                            disabled
+                    >
+                        Подробнее
+                    </button>
+
+                </article>
+
+                <!-- =================================
+                     КАРТОЧКА 3 — ТЁМНАЯ ОХОТНИЦА
+                     ================================= -->
+
+                <article class="product-card">
+
+                    <!-- Изображение без ссылки, поскольку
+                         подробная страница не предусмотрена. -->
+                    <div class="product-card__image-link">
+
+                        <img
+                                class="product-card__image"
+                                src="images/dark-huntress.jpg"
+                                loading="lazy"
+                                alt="Косплей-костюм Тёмной охотницы"
+                        >
+
+                    </div>
+
+                    <h3 class="product-card__title">
+                        Тёмная охотница
+                    </h3>
+
+                    <p class="product-card__description">
+                        Детализированный образ в тёмном фэнтезийном стиле
+                        для фестивалей и тематических фотосессий.
+                    </p>
+
+                    <p class="product-card__price">
+                        Цена: 11 400 руб.
+                    </p>
+
+                    <button
+                            class="button button--primary product-card__button product-card__button--unavailable"
+                            type="button"
+                            disabled
+                    >
+                        Подробнее
+                    </button>
+
+                </article>
+
+                <!-- =================================
+                     КАРТОЧКА 4 — ЛЕСНАЯ ЭЛЬФИЙКА
+                     ================================= -->
+
+                <article class="product-card">
+
+                    <!-- Текстовая заглушка используется
+                         вместо отсутствующей фотографии. -->
+                    <div class="product-card__image-placeholder">
+                        Фото костюма
+                    </div>
+
+                    <h3 class="product-card__title">
+                        Лесная эльфийка
+                    </h3>
+
+                    <p class="product-card__description">
+                        Лёгкий фэнтезийный образ в природных оттенках
+                        с декоративными элементами.
+                    </p>
+
+                    <p class="product-card__price">
+                        Цена: 10 900 руб.
+                    </p>
+
+                    <button
+                            class="button button--primary product-card__button product-card__button--unavailable"
+                            type="button"
+                            disabled
+                    >
+                        Подробнее
+                    </button>
+
+                </article>
+
+                <!-- =================================
+                     КАРТОЧКА 5 — ВОИТЕЛЬНИЦА СЕВЕРА
+                     ================================= -->
+
+                <article class="product-card">
+
+                    <div class="product-card__image-placeholder">
+                        Фото костюма
+                    </div>
+
+                    <h3 class="product-card__title">
+                        Воительница Севера
+                    </h3>
+
+                    <p class="product-card__description">
+                        Образ северной воительницы с декоративной бронёй
+                        и элементами фэнтези.
+                    </p>
+
+                    <p class="product-card__price">
+                        Цена: 13 500 руб.
+                    </p>
+
+                    <button
+                            class="button button--primary product-card__button product-card__button--unavailable"
+                            type="button"
+                            disabled
+                    >
+                        Подробнее
+                    </button>
+
+                </article>
+
+                <!-- =================================
+                     КАРТОЧКА 6 — АКАДЕМИЯ МАГИИ
+                     ================================= -->
+
+                <article class="product-card">
+
+                    <div class="product-card__image-placeholder">
+                        Фото костюма
+                    </div>
+
+                    <h3 class="product-card__title">
+                        Академия магии
+                    </h3>
+
+                    <p class="product-card__description">
+                        Костюм ученицы магической академии
+                        для фестивалей, фотосессий и тематических мероприятий.
+                    </p>
+
+                    <p class="product-card__price">
+                        Цена: 8 900 руб.
+                    </p>
+
+                    <button
+                            class="button button--primary product-card__button product-card__button--unavailable"
+                            type="button"
+                            disabled
+                    >
+                        Подробнее
+                    </button>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+<!-- =========================================
+     ПОДВАЛ САЙТА
+     Практика №14: финальная проверка
+     ========================================= -->
+
+<!-- Положение подвала определяется CSS.
+     На коротких страницах он прижат к низу,
+     а на длинных следует после содержимого. -->
+<footer class="site-footer">
+
+    <p class="site-footer__text">
+        &copy; 2026 AEGIS COSPLAY. Все права защищены.
+    </p>
+
+    <p class="site-footer__text">
+        Учебный проект по дисциплине
+        «Фронтенд и бэкенд разработка»
+    </p>
+
+</footer>
+
+</body>
+</html>
