@@ -65,5 +65,27 @@ const products = [
         "isAvailable": false,
         "image": "",
         "description": "Костюм ученицы магической академии для фестивалей, фотосессий и тематических мероприятий."
+    },
+    {
+        "id": 7,
+        "title": "Костюм Артемиды",
+        "category": "mythology",
+        "price": 11900,
+        "discountPercent": 0,
+        "rating": null,
+        "isAvailable": true,
+        "image": "",
+        "description": "Учебная позиция: мифологический образ Артемиды для фестиваля или фотосессии."
+    },
+    {
+        "id": 8,
+        "title": "Звёздная чародейка",
+        "category": "magic",
+        "price": 10500,
+        "discountPercent": 0,
+        "rating": null,
+        "isAvailable": true,
+        "image": "",
+        "description": "Учебная позиция: магический образ с декоративными элементами для тематического мероприятия."
     }
 ];

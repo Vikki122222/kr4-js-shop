@@ -194,8 +194,16 @@ if (!productsContainer) {
             console.warn('Товар не найден:', productId);
             return;
         }
-        // Полная корзина появится позднее, здесь только делегирование события.
-        console.log(`Товар добавлен в корзину: ${selectedProduct.title}`);
+        if (!selectedProduct.isAvailable) {
+            return;
+        }
+        const added = addToCart(selectedProduct.id);
+        const feedback = document.querySelector('.catalog-cart-message');
+        if (feedback) {
+            feedback.textContent = added
+                ? `Товар «${selectedProduct.title}» добавлен в корзину.`
+                : 'Не удалось сохранить корзину.';
+        }
     });
     updateCatalog();
 }

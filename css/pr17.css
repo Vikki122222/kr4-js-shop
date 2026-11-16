@@ -20,3 +20,17 @@
 .order-form__input[aria-invalid="true"],
 .order-form__select[aria-invalid="true"] { border-color: #ffacac; }
 .product-card__status { margin: 0 0 10px; }
+
+/* Практическая №18: корзина и сообщения о действиях. */
+.catalog-cart-message { min-height: 1.4em; margin: 0 0 14px; color: #e9d3f5; }
+.cart-page { width: min(1100px, calc(100% - 32px)); margin: 32px auto 72px; }
+.cart-items { display: grid; gap: 16px; margin: 24px 0; }
+.cart-item { padding: 20px; border: 1px solid #806e91; border-radius: 14px; background: #302539; }
+.cart-item h2 { font-size: 1.2rem; margin: 0 0 10px; }
+.cart-item p { margin: 8px 0; }
+.cart-remove { padding: 9px 16px; margin-top: 8px; cursor: pointer; border: 1px solid #d7bee7; border-radius: 10px; color: #f6eaff; background: #4d395c; }
+.cart-remove:hover { background: #664c79; }
+.cart-total { font-size: 1.35rem; font-weight: 700; margin-bottom: 22px; }
+.cart-empty { padding: 20px; border: 1px solid #806e91; border-radius: 12px; }
+.cart-empty[hidden], .cart-total[hidden] { display: none; }
+@media (max-width: 640px) { .cart-page { margin-top: 20px; } .cart-item { padding: 14px; } }

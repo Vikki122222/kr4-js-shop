@@ -22,7 +22,9 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/pr17.css">
+    <link rel="stylesheet" href="css/pr18.css">
     <script src="js/data.js" defer></script>
+    <script src="js/cart.js" defer></script>
     <script src="js/catalog.js" defer></script>
 
     <!-- Метаданные для предпросмотра ссылки на сайт. -->
@@ -98,6 +100,12 @@
                             aria-current="page"
                     >
                         Каталог
+                    </a>
+                </li>
+
+                <li class="site-nav__item">
+                    <a class="site-nav__link" href="cart.html">
+                        Корзина (<span data-cart-count>0</span>)
                     </a>
                 </li>
 
@@ -205,6 +213,7 @@
         <section class="catalog-layout__products">
             <h2 class="section__title">Все костюмы</h2>
             <p class="catalog-count" aria-live="polite"></p>
+            <p class="catalog-cart-message" aria-live="polite"></p>
             <p class="catalog-empty" hidden>По выбранным условиям товары не найдены.</p>
             <!-- Карточки из КР №3 теперь создаёт js/catalog.js через createElement().
                  Ссылка «Подробнее» и адаптивное изображение Афины сохранены в JS. -->
