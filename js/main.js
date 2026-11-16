@@ -247,35 +247,45 @@ if (orderPageForm && orderSuccessMessage) {
         });
     });
 }
-/* =========================================
-   Практическая №16. Массив товаров и обработка данных
-   ========================================= */
 
+/*
+ * Практическая №16
+ * Массив товаров и обработка данных.
+ */
+
+// Выводим данные товаров в консоль для проверки
 console.log('Файл main.js подключён');
 console.log(products);
 console.table(products);
 
+// Получаем названия всех товаров
 function getProductTitles(products) {
     return products.map((product) => product.title);
 }
 
+// Получаем только товары, которые есть в наличии
 function getAvailableProducts(products) {
     return products.filter((product) => product.isAvailable);
 }
 
+// Ищем товары по части названия
 function searchProducts(products, query) {
     const normalizedQuery = query.trim().toLowerCase();
 
+    // Если строка поиска пустая, возвращаем все товары
     if (normalizedQuery === '') {
         return products;
     }
 
+    // Оставляем товары, в названии которых есть запрос
     return products.filter((product) => {
         return product.title.toLowerCase().includes(normalizedQuery);
     });
 }
 
+// Фильтруем товары по выбранной категории
 function filterProductsByCategory(products, category) {
+    // Категория all означает, что нужны все товары
     if (category === 'all') {
         return products;
     }
@@ -285,39 +295,51 @@ function filterProductsByCategory(products, category) {
     });
 }
 
+// Сортируем товары по цене
 function sortProductsByPrice(products, direction = 'asc') {
+    // Создаём копию массива, чтобы сохранить исходный порядок
     const productsCopy = [...products];
 
+    // Сортировка от дорогих к дешёвым
     if (direction === 'desc') {
         return productsCopy.sort((a, b) => b.price - a.price);
     }
 
+    // Сортировка от дешёвых к дорогим
     return productsCopy.sort((a, b) => a.price - b.price);
 }
 
+// Находим один товар по его ID
 function findProductById(products, id) {
     return products.find((product) => product.id === id);
 }
 
+// Считаем общую стоимость всех товаров
 function calculateTotalPrice(products) {
     return products.reduce((sum, product) => {
         return sum + product.price;
     }, 0);
 }
 
+// Считаем количество товаров в наличии
 function countAvailableProducts(products) {
     return products.filter((product) => product.isAvailable).length;
 }
 
+// Вычисляем среднюю цену товаров
 function calculateAveragePrice(products) {
+    // Если массив пустой, возвращаем ноль
     if (products.length === 0) {
         return 0;
     }
 
     const totalPrice = calculateTotalPrice(products);
+
+    // Округляем среднюю цену до целого числа
     return Math.round(totalPrice / products.length);
 }
 
+// Применяем поиск, фильтрацию и сортировку вместе
 function getPreparedProducts(products, query, category, sortDirection) {
     let result = [...products];
 
@@ -328,32 +350,41 @@ function getPreparedProducts(products, query, category, sortDirection) {
     return result;
 }
 
+// Проверяем работу функций через консоль браузера
 console.log(getProductTitles(products));
 console.table(getAvailableProducts(products));
 console.table(searchProducts(products, 'ко'));
 console.table(filterProductsByCategory(products, 'kitchen'));
+
+// Проверяем сортировку в обоих направлениях
 console.table(sortProductsByPrice(products, 'asc'));
 console.table(sortProductsByPrice(products, 'desc'));
 
+// Проверяем поиск товара по ID
 const selectedProduct = findProductById(products, 3);
+
 if (selectedProduct) {
     console.log(`Найден товар: ${selectedProduct.title}`);
 } else {
     console.log('Товар не найден');
 }
 
+// Проверяем расчёты и совместную обработку данных
 console.log(calculateTotalPrice(products));
 console.log(countAvailableProducts(products));
 console.log(calculateAveragePrice(products));
 console.table(getPreparedProducts(products, 'ко', 'kitchen', 'asc'));
 
+// Находим элементы для вывода результатов на страницу
 const messageElement = document.querySelector('.js-message');
 const productOutputElement = document.querySelector('.product-output');
 
+// Показываем сообщение о подключении функций
 if (messageElement) {
     messageElement.textContent = 'Массив товаров и функции обработки данных подключены.';
 }
 
+// Выводим краткую статистику товаров на страницу
 if (productOutputElement) {
     productOutputElement.textContent = [
         `Всего товаров: ${products.length}`,
