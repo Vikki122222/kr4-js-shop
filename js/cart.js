@@ -1,4 +1,3 @@
-
 /*
  * Контрольная работа №4
  * Корзина товаров: добавление, удаление, подсчёт суммы и localStorage.
@@ -94,13 +93,13 @@ function removeFromCart(productId) {
     renderCart();
 }
 
-// Считаем общую стоимость товаров через reduce
+// Считаем общую стоимость товаров с учётом скидок через reduce
 function getCartTotal() {
     return cartItems.reduce((sum, item) => {
         const product = products.find((p) => p.id === item.productId);
 
-        // Учитываем цену и количество каждого товара
-        return sum + (product ? product.price * item.quantity : 0);
+        // Для каждого товара берём цену со скидкой и умножаем на количество
+        return sum + (product ? getDiscountedPrice(product) * item.quantity : 0);
     }, 0);
 }
 
@@ -142,9 +141,15 @@ function renderCart() {
         const quantity = document.createElement('p');
         quantity.textContent = `Количество: ${item.quantity}`;
 
-        // Стоимость с учётом количества
+        // Стоимость с учётом количества и скидки
         const price = document.createElement('p');
-        price.textContent = `Стоимость: ${(product.price * item.quantity).toLocaleString('ru-RU')} руб.`;
+        const discountedTotal = getDiscountedPrice(product) * item.quantity;
+        const originalTotal = product.price * item.quantity;
+        if (product.discountPercent > 0) {
+            price.textContent = `Стоимость: ${discountedTotal.toLocaleString('ru-RU')} руб. (скидка ${product.discountPercent}%, было ${originalTotal.toLocaleString('ru-RU')} руб.)`;
+        } else {
+            price.textContent = `Стоимость: ${originalTotal.toLocaleString('ru-RU')} руб.`;
+        }
 
         // Кнопка удаления товара
         const remove = document.createElement('button');

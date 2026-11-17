@@ -1,4 +1,3 @@
-
 /*
  * Контрольная работа №4
  * Каталог товаров: поиск, фильтрация, сортировка и корзина.
@@ -43,17 +42,17 @@ function filterProductsByCategory(products, category) {
     return products.filter((product) => product.category === category);
 }
 
-// Сортировка товаров по цене или названию
+// Сортировка товаров по цене со скидкой или названию
 function sortProducts(products, sortType) {
     // Создаём копию, чтобы не изменять исходный массив
     const productsCopy = [...products];
 
     if (sortType === 'price-asc') {
-        return productsCopy.sort((a, b) => a.price - b.price);
+        return productsCopy.sort((a, b) => getDiscountedPrice(a) - getDiscountedPrice(b));
     }
 
     if (sortType === 'price-desc') {
-        return productsCopy.sort((a, b) => b.price - a.price);
+        return productsCopy.sort((a, b) => getDiscountedPrice(b) - getDiscountedPrice(a));
     }
 
     if (sortType === 'title-asc') {
@@ -137,10 +136,32 @@ function createProductCard(product) {
     description.classList.add('product-card__description');
     description.textContent = product.description;
 
-    // Выводим цену товара
+    // Красиво показываем цену: новая, зачёркнутая старая и процент скидки
     const price = document.createElement('p');
     price.classList.add('product-card__price');
-    price.textContent = `Цена: ${formatPrice(product.price)}`;
+
+    if (product.discountPercent > 0) {
+        price.classList.add('product-card__price--sale');
+
+        // Новая цена с учётом скидки
+        const currentPrice = document.createElement('span');
+        currentPrice.classList.add('product-card__price-current');
+        currentPrice.textContent = formatPrice(getDiscountedPrice(product));
+
+        // Старая зачёркнутая цена
+        const oldPrice = document.createElement('s');
+        oldPrice.classList.add('product-card__price-old');
+        oldPrice.textContent = formatPrice(product.price);
+
+        // Небольшой значок с процентом скидки
+        const discountBadge = document.createElement('span');
+        discountBadge.classList.add('product-card__discount-badge');
+        discountBadge.textContent = `−${product.discountPercent}%`;
+
+        price.append(currentPrice, oldPrice, discountBadge);
+    } else {
+        price.textContent = `Цена: ${formatPrice(product.price)}`;
+    }
 
     // Показываем наличие товара
     const status = document.createElement('p');
